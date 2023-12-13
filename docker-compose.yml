@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  app:
+    image: app
+    container_name: app
+    restart: always
+    environment:
+    - SR_TG_URL=http://sr_tg:8080
+    - TTS_URL=http://tts:8000
+    networks:
+      - dunno_app
+    ports:
+      - "5000:5000"
+
+  sr_tg:
+    image: sr_tg
+    container_name: sr_tg
+    restart: always
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: 1
+            capabilities: [gpu]
+    networks:
+      - dunno_app
+    ports:
+      - "8080:8080"
+
+  tts:
+    image: tts
+    container_name: tts
+    restart: always
+    command: ["/bin/bash", "-c", "yes | uvicorn main:app --host 0.0.0.0 --port 8000"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: 1
+            capabilities: [gpu]
+    networks:
+      - dunno_app
+    ports:
+      - "8000:8000"
+    
+
+networks:
+  dunno_app:
