@@ -74,4 +74,4 @@
 - просить о помощи не стыдно;
 - ещё один пункт, спросите меня о нём на собеседовании.
 
-![cert](https://github.com/alexander-kurchin/pics-for-md/blob/main/idontknower/cert.jpg)
+![cert](https://github.com/alexander-kurchin/pics-for-md/blob/main/idontknower/cert2.jpg)
